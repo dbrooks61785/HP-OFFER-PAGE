@@ -1,0 +1,290 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand Colors - Black, White, Blue */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    /* Primary is the vibrant blue #002cff */
+    --primary: 227 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 227 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 227 100% 50%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --surface-dark: 0 0% 0%;
+    --surface-dark-foreground: 0 0% 100%;
+    --surface-dark-muted: 0 0% 60%;
+    
+    --gradient-blue: linear-gradient(135deg, hsl(227 100% 50%) 0%, hsl(227 100% 40%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 0%) 0%, hsl(0 0% 8%) 100%);
+    
+    --shadow-blue: 0 4px 30px -4px hsl(227 100% 50% / 0.4);
+    --shadow-card: 0 4px 20px -4px hsl(0 0% 0% / 0.1);
+    --shadow-dark-card: 0 4px 20px -4px hsl(0 0% 100% / 0.05);
+    
+    /* High-gloss primary for dark backgrounds */
+    --primary-glow: 227 100% 60%;
+    --text-glow-blue: 0 0 20px hsl(227 100% 50% / 0.6), 0 0 40px hsl(227 100% 50% / 0.3);
+
+    /* Sidebar defaults */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 227 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 227 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 227 100% 50%;
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 227 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 227 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer components {
+  /* Dark surface sections */
+  .surface-dark {
+    @apply bg-surface-dark text-surface-dark-foreground;
+  }
+
+  /* Blue highlight text */
+  .text-highlight {
+    @apply text-primary;
+  }
+
+  /* Hero badge */
+  .badge-hero {
+    @apply inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide;
+    background: hsl(var(--primary) / 0.15);
+    color: hsl(var(--primary));
+    border: 1px solid hsl(var(--primary) / 0.3);
+  }
+
+  /* CTA Button styles */
+  .btn-cta {
+    @apply inline-flex items-center justify-center px-8 py-4 text-lg font-bold rounded-lg transition-all duration-300;
+    background: var(--gradient-blue);
+    color: hsl(var(--primary-foreground));
+    box-shadow: var(--shadow-blue);
+  }
+
+  .btn-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 40px -4px hsl(227 100% 50% / 0.5);
+  }
+
+  .btn-cta-outline {
+    @apply inline-flex items-center justify-center px-8 py-4 text-lg font-bold rounded-lg transition-all duration-300 border-2;
+    border-color: hsl(var(--primary));
+    color: hsl(var(--primary));
+    background: transparent;
+  }
+
+  .btn-cta-outline:hover {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  /* Section styling */
+  .section-light {
+    @apply bg-background text-foreground;
+  }
+
+  .section-dark {
+    @apply text-white;
+    background: var(--gradient-dark);
+  }
+
+  /* Card variants */
+  .card-dark {
+    @apply rounded-2xl p-8;
+    background: hsl(0 0% 8%);
+    border: 1px solid hsl(0 0% 15%);
+  }
+
+  .card-light {
+    @apply rounded-2xl p-8 bg-white;
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-blue {
+    @apply rounded-2xl p-8;
+    background: var(--gradient-blue);
+    color: white;
+  }
+
+  /* Pricing card */
+  .pricing-card {
+    @apply rounded-2xl p-8 transition-all duration-300;
+    background: hsl(0 0% 5%);
+    border: 1px solid hsl(0 0% 20%);
+  }
+
+  .pricing-card:hover {
+    border-color: hsl(var(--primary));
+    box-shadow: var(--shadow-blue);
+  }
+
+  .pricing-card-featured {
+    @apply rounded-2xl p-8 relative;
+    background: hsl(0 0% 8%);
+    border: 2px solid hsl(var(--primary));
+    box-shadow: var(--shadow-blue);
+  }
+
+  /* Table styling */
+  .table-dark {
+    @apply w-full text-left;
+  }
+
+  .table-dark th {
+    @apply px-6 py-4 text-sm font-semibold uppercase tracking-wider border-b;
+    color: hsl(var(--primary));
+    border-color: hsl(0 0% 20%);
+  }
+
+  .table-dark td {
+    @apply px-6 py-4 border-b;
+    border-color: hsl(0 0% 15%);
+  }
+
+  .table-dark tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Checklist item */
+  .checklist-item {
+    @apply flex items-start gap-3 py-2;
+  }
+
+  .checklist-icon {
+    @apply w-5 h-5 mt-0.5 flex-shrink-0;
+    color: hsl(var(--primary));
+  }
+
+  /* Section headers */
+  .section-overline {
+    @apply text-sm font-semibold uppercase tracking-widest mb-4;
+    color: hsl(var(--primary-glow));
+    text-shadow: var(--text-glow-blue);
+  }
+  
+  /* High-gloss text on dark backgrounds */
+  .text-glow {
+    color: hsl(var(--primary-glow));
+    text-shadow: var(--text-glow-blue);
+  }
+  
+  .section-dark .text-primary,
+  .section-dark .text-highlight {
+    color: hsl(var(--primary-glow));
+    text-shadow: var(--text-glow-blue);
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold mb-6 leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-lg md:text-xl leading-relaxed;
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Dark section subtitle */
+  .section-dark .section-subtitle {
+    color: hsl(0 0% 70%);
+  }
+
+  /* List with blue bullets */
+  .list-blue li::marker {
+    color: hsl(var(--primary));
+  }
+
+  /* Divider */
+  .divider-blue {
+    @apply w-20 h-1 rounded-full;
+    background: hsl(var(--primary));
+  }
+
+  /* Scroll anchor offset for fixed header */
+  .scroll-mt-header {
+    scroll-margin-top: 100px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
