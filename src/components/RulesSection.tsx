@@ -94,6 +94,9 @@ const RulesSection = () => {
                   If EZ Lumper Services fails to meet the guaranteed response window in a Primary Coverage Zone after proper intake:
                 </p>
                 <p className="text-xl font-bold text-primary mb-4">One SLA Credit is issued</p>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Available for <strong>H.A.U.L. PASS</strong> only (not H.A.U.L. PASS Lite).
+                </p>
                 <p className="font-semibold mb-2">Rules:</p>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-start gap-3">
@@ -131,7 +134,7 @@ const RulesSection = () => {
               
               <div className="card-light">
                 <p className="text-muted-foreground mb-4">
-                  To qualify for priority dispatch, guaranteed response, and credit application, you must have:
+                  To qualify for priority dispatch and (where included) guaranteed response / SLA credit, you must have:
                 </p>
                 <ul className="space-y-3 mb-6">
                   {intakeRequirements.map((req, index) => (

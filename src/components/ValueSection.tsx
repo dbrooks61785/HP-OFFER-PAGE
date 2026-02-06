@@ -1,4 +1,4 @@
-import { Zap, Clock, Wallet, ExternalLink } from "lucide-react";
+import { Zap, Clock, Wallet, ExternalLink, MapPin } from "lucide-react";
 
 const ValueSection = () => {
   return (
@@ -50,7 +50,7 @@ const ValueSection = () => {
                 <div>
                   <h3 className="text-2xl font-bold mb-4">2. Guaranteed Response Time</h3>
                   <p className="text-surface-dark-muted mb-6">In Primary Coverage Zones, EZ Lumper Services guarantees:</p>
-                  <div className="grid sm:grid-cols-3 gap-4 mb-6">
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                     <div className="bg-primary/10 border border-primary/30 rounded-xl p-4 text-center">
                       <p className="text-3xl font-bold text-primary">2–4</p>
                       <p className="text-sm text-surface-dark-muted">Hour Response Window</p>
@@ -62,6 +62,15 @@ const ValueSection = () => {
                     <div className="bg-primary/10 border border-primary/30 rounded-xl p-4 text-center">
                       <p className="text-xl font-bold text-primary">SLA Backed</p>
                       <p className="text-sm text-surface-dark-muted">Compensation If Missed</p>
+                    </div>
+                    <div className="bg-primary/10 border border-primary/30 rounded-xl p-4 text-center">
+                      <div className="flex items-center justify-center gap-2 text-primary font-bold mb-1">
+                        <MapPin className="w-4 h-4" />
+                        <span>Live Tracking</span>
+                      </div>
+                      <p className="text-sm text-surface-dark-muted">
+                        When crews are dispatched, you receive live status + ETA updates to your location
+                      </p>
                     </div>
                   </div>
                   <a 

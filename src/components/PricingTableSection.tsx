@@ -5,9 +5,9 @@ const PricingTableSection = () => {
     { feature: "Monthly Price", lite: "$1,500", full: "$2,500" },
     { feature: "Tier 1 Credits / Month", lite: "2", full: "4" },
     { feature: "Priority Dispatch", lite: true, full: true },
-    { feature: "Guaranteed Response (Primary Zones)", lite: true, full: true },
+    { feature: "Guaranteed Response (Primary Zones)", lite: false, full: true },
     { feature: "Member Recovery Pricing", lite: true, full: true },
-    { feature: "SLA Credit Protection", lite: true, full: true },
+    { feature: "SLA Credit Protection", lite: false, full: true },
     { feature: "Credit Stackability", lite: true, full: true },
   ];
 
