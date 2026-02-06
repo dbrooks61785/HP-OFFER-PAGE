@@ -1,6 +1,21 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect } from "react";
 
 const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
+  useEffect(() => {
+    const src = "https://link.msgsndr.com/js/form_embed.js";
+    const existing = document.querySelector<HTMLScriptElement>(`script[src="${src}"]`);
+    if (existing) return;
+
+    const script = document.createElement("script");
+    script.src = src;
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      // Keep the script if other embeds rely on it.
+    };
+  }, []);
+
   return (
     <section ref={ref} id="signup" className="section-dark py-24 scroll-mt-header">
       <div className="container mx-auto px-6">
@@ -15,9 +30,21 @@ const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
           
           <div className="card-dark overflow-hidden">
             <iframe
-              src="https://www.ezlumperservices.com/qb-form-page"
-              style={{ width: "100%", height: "2360px", border: "none", borderRadius: "60px" }}
-              title="H.A.U.L. PASS Sign Up Form"
+              src="https://api.leadconnectorhq.com/widget/form/rzO4aGPK4HLk2zyHkBoM"
+              style={{ width: "100%", height: "2342px", border: "none", borderRadius: "60px" }}
+              id="inline-rzO4aGPK4HLk2zyHkBoM"
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="H.A.U.L. PASS Signup Form"
+              data-height="2342"
+              data-layout-iframe-id="inline-rzO4aGPK4HLk2zyHkBoM"
+              data-form-id="rzO4aGPK4HLk2zyHkBoM"
+              title="H.A.U.L. PASS Signup Form"
               loading="lazy"
             />
           </div>
@@ -25,7 +52,7 @@ const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
           <p className="text-center text-surface-dark-muted text-sm mt-6">
             Having trouble loading the form?{" "}
             <a
-              href="https://www.ezlumperservices.com/qb-form-page"
+              href="https://api.leadconnectorhq.com/widget/form/rzO4aGPK4HLk2zyHkBoM"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline"

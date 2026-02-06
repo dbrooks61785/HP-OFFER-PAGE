@@ -1,4 +1,5 @@
 import logo from "@/assets/ez-lumper-logo.png";
+import { Link } from "react-router-dom";
 
 interface HeaderProps {
   onCtaClick: () => void;
@@ -15,9 +16,17 @@ const Header = ({ onCtaClick }: HeaderProps) => {
             className="h-[50px] w-auto object-contain"
           />
         </a>
-        <button onClick={onCtaClick} className="btn-cta text-base py-3 px-6">
-          Get H.A.U.L. PASS
-        </button>
+        <div className="flex items-center gap-3">
+          <Link
+            to="/login"
+            className="btn-cta-outline text-base py-3 px-6 text-white border-white hover:bg-white hover:text-foreground"
+          >
+            Member Login
+          </Link>
+          <button onClick={onCtaClick} className="btn-cta text-base py-3 px-6">
+            Get H.A.U.L. PASS
+          </button>
+        </div>
       </div>
     </header>
   );
