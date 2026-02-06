@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
-
-const API_BASE_URL = "https://api.haulpass.ezlumperservices.com";
+import { API_BASE_URL } from "@/lib/api";
 
 type SubmitState = "idle" | "submitting" | "sent" | "error";
 
