@@ -8,10 +8,10 @@ const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
     // GHL forms often grow significantly on mobile due to stacked fields.
     if (w < 640) return 3600; // mobile
     if (w < 1024) return 2900; // tablet/small laptop
-    return 2100; // desktop (reduce blank space; allow auto-resize to adjust)
+    return 1700; // desktop fallback (auto-resize will increase if needed)
   };
 
-  const [height, setHeight] = useState(() => (typeof window === "undefined" ? 2342 : getHeight(window.innerWidth)));
+  const [height, setHeight] = useState(() => (typeof window === "undefined" ? 1700 : getHeight(window.innerWidth)));
 
   useEffect(() => {
     // Load after the iframe exists so the widget initializes.
