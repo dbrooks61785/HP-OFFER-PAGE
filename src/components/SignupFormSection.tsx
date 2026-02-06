@@ -29,11 +29,11 @@ const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
             </p>
           </div>
           
-          <div className="card-dark overflow-hidden">
+          <div className="card-dark overflow-hidden p-0 rounded-[60px]">
             <div style={{ width: "100%", height: "2342px" }}>
               <iframe
                 src="https://api.leadconnectorhq.com/widget/form/rzO4aGPK4HLk2zyHkBoM"
-                style={{ width: "100%", height: "100%", border: "none", borderRadius: "60px" }}
+                style={{ width: "100%", height: "100%", border: "none" }}
                 id="inline-rzO4aGPK4HLk2zyHkBoM"
                 data-layout="{'id':'INLINE'}"
                 data-trigger-type="alwaysShow"
