@@ -65,7 +65,7 @@ const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
             </div>
           </div>
 
-          <p className="text-center text-surface-dark-muted text-sm mt-6">
+          <p className="text-center text-surface-dark-muted text-sm mt-3 sm:mt-4">
             Having trouble loading the form?{" "}
             <a
               href="https://api.leadconnectorhq.com/widget/form/rzO4aGPK4HLk2zyHkBoM"
