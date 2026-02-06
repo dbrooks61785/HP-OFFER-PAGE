@@ -1,4 +1,4 @@
-import logo from "@/assets/ez-lumper-logo.png";
+import headerLogo from "@/assets/ez-lumper-logo-header.png";
 import { Link } from "react-router-dom";
 
 interface HeaderProps {
@@ -16,7 +16,7 @@ const Header = ({ onCtaClick }: HeaderProps) => {
           className="flex items-center justify-center"
         >
           <img 
-            src={logo} 
+            src={headerLogo} 
             alt="EZ Lumper Services" 
             className="h-[50px] w-auto object-contain"
           />
