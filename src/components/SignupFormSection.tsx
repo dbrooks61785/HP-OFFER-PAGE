@@ -26,7 +26,8 @@ const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
           </div>
           
           <div className="card-dark overflow-hidden p-0 rounded-[60px]">
-            <div style={{ width: "100%", height: "2600px" }}>
+            {/* Keep this close to the GHL-provided height to avoid blank space below */}
+            <div style={{ width: "100%", height: "2420px" }}>
               <iframe
                 src="https://api.leadconnectorhq.com/widget/form/rzO4aGPK4HLk2zyHkBoM"
                 style={{ width: "100%", height: "100%", border: "none" }}
@@ -39,7 +40,7 @@ const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
                 data-deactivation-type="neverDeactivate"
                 data-deactivation-value=""
                 data-form-name="H.A.U.L. PASS Signup Form"
-                data-height="2600"
+                data-height="2420"
                 data-layout-iframe-id="inline-rzO4aGPK4HLk2zyHkBoM"
                 data-form-id="rzO4aGPK4HLk2zyHkBoM"
                 title="H.A.U.L. PASS Signup Form"
