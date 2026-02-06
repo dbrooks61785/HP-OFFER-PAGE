@@ -1,11 +1,13 @@
 import { forwardRef, useEffect, useMemo, useState } from "react";
 
 const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
+  const IFRAME_ID = "inline-rzO4aGPK4HLk2zyHkBoM";
+
   const getHeight = (w: number) => {
     // GHL forms often grow significantly on mobile due to stacked fields.
     if (w < 640) return 3600; // mobile
     if (w < 1024) return 2900; // tablet/small laptop
-    return 2342; // desktop (matches original embed height)
+    return 2100; // desktop (reduce blank space; allow auto-resize to adjust)
   };
 
   const [height, setHeight] = useState(() => (typeof window === "undefined" ? 2342 : getHeight(window.innerWidth)));
@@ -28,6 +30,40 @@ const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
+  useEffect(() => {
+    // LeadConnector/GHL embeds often postMessage iframe height updates.
+    // Listen and adjust so we don't leave blank space below the form.
+    const handler = (event: MessageEvent) => {
+      const origin = String(event.origin || "");
+      if (!origin.includes("leadconnectorhq.com") && !origin.includes("msgsndr.com")) return;
+
+      let data: any = event.data;
+      if (typeof data === "string") {
+        try {
+          data = JSON.parse(data);
+        } catch {
+          // ignore non-JSON string messages
+          return;
+        }
+      }
+      if (!data || typeof data !== "object") return;
+
+      const id = (data.iframeId ?? data.id ?? data.frameId ?? data.name) as unknown;
+      if (id && String(id) !== IFRAME_ID) return;
+
+      const rawHeight = data.height ?? data.frameHeight ?? data.iframeHeight ?? data.h;
+      const next = Number(rawHeight);
+      if (!Number.isFinite(next)) return;
+
+      // Clamp to prevent silly values.
+      const clamped = Math.max(900, Math.min(6000, Math.round(next)));
+      setHeight((prev) => (Math.abs(prev - clamped) < 10 ? prev : clamped));
+    };
+
+    window.addEventListener("message", handler);
+    return () => window.removeEventListener("message", handler);
+  }, []);
+
   const heightPx = useMemo(() => `${height}px`, [height]);
 
   return (
@@ -48,7 +84,7 @@ const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
               <iframe
                 src="https://api.leadconnectorhq.com/widget/form/rzO4aGPK4HLk2zyHkBoM"
                 style={{ width: "100%", height: "100%", border: "none" }}
-                id="inline-rzO4aGPK4HLk2zyHkBoM"
+                id={IFRAME_ID}
                 data-layout="{'id':'INLINE'}"
                 data-trigger-type="alwaysShow"
                 data-trigger-value=""
