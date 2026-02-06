@@ -1,6 +1,18 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect } from "react";
 
 const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
+  useEffect(() => {
+    // Load after the iframe exists so the widget initializes.
+    const id = "ghl-form-embed";
+    if (document.getElementById(id)) return;
+
+    const script = document.createElement("script");
+    script.id = id;
+    script.src = "https://link.msgsndr.com/js/form_embed.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <section ref={ref} id="signup" className="section-dark py-24 scroll-mt-header">
       <div className="container mx-auto px-6">
@@ -14,7 +26,7 @@ const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
           </div>
           
           <div className="card-dark overflow-hidden p-0 rounded-[60px]">
-            <div style={{ width: "100%", height: "2342px" }}>
+            <div style={{ width: "100%", height: "2600px" }}>
               <iframe
                 src="https://api.leadconnectorhq.com/widget/form/rzO4aGPK4HLk2zyHkBoM"
                 style={{ width: "100%", height: "100%", border: "none" }}
@@ -27,7 +39,7 @@ const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
                 data-deactivation-type="neverDeactivate"
                 data-deactivation-value=""
                 data-form-name="H.A.U.L. PASS Signup Form"
-                data-height="2342"
+                data-height="2600"
                 data-layout-iframe-id="inline-rzO4aGPK4HLk2zyHkBoM"
                 data-form-id="rzO4aGPK4HLk2zyHkBoM"
                 title="H.A.U.L. PASS Signup Form"
