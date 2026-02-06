@@ -1,6 +1,15 @@
-import { forwardRef, useEffect } from "react";
+import { forwardRef, useEffect, useMemo, useState } from "react";
 
 const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
+  const getHeight = (w: number) => {
+    // GHL forms often grow significantly on mobile due to stacked fields.
+    if (w < 640) return 3600; // mobile
+    if (w < 1024) return 2900; // tablet/small laptop
+    return 2342; // desktop (matches original embed height)
+  };
+
+  const [height, setHeight] = useState(() => (typeof window === "undefined" ? 2342 : getHeight(window.innerWidth)));
+
   useEffect(() => {
     // Load after the iframe exists so the widget initializes.
     const id = "ghl-form-embed";
@@ -12,6 +21,14 @@ const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
     script.async = true;
     document.body.appendChild(script);
   }, []);
+
+  useEffect(() => {
+    const onResize = () => setHeight(getHeight(window.innerWidth));
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const heightPx = useMemo(() => `${height}px`, [height]);
 
   return (
     <section ref={ref} id="signup" className="section-dark py-24 scroll-mt-header">
@@ -27,7 +44,7 @@ const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
           
           <div className="card-dark overflow-hidden p-0 rounded-[60px]">
             {/* Keep this close to the GHL-provided height to avoid blank space below */}
-            <div style={{ width: "100%", height: "2420px" }}>
+            <div style={{ width: "100%", height: heightPx }}>
               <iframe
                 src="https://api.leadconnectorhq.com/widget/form/rzO4aGPK4HLk2zyHkBoM"
                 style={{ width: "100%", height: "100%", border: "none" }}
@@ -40,11 +57,10 @@ const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
                 data-deactivation-type="neverDeactivate"
                 data-deactivation-value=""
                 data-form-name="H.A.U.L. PASS Signup Form"
-                data-height="2420"
+                data-height={height}
                 data-layout-iframe-id="inline-rzO4aGPK4HLk2zyHkBoM"
                 data-form-id="rzO4aGPK4HLk2zyHkBoM"
                 title="H.A.U.L. PASS Signup Form"
-                loading="lazy"
               />
             </div>
           </div>
