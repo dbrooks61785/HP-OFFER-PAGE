@@ -8,11 +8,11 @@ const Footer = () => {
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
             <div>
-              <div className="inline-flex items-center justify-center rounded-xl bg-transparent p-0 mb-4 md:bg-white md:p-3">
+              <div className="inline-flex items-center justify-center rounded-xl bg-transparent p-0 mb-4">
                 <img
                   src={logo}
                   alt="EZ Lumper Services"
-                  className="h-14 w-auto object-contain mix-blend-screen md:mix-blend-normal"
+                  className="h-14 w-auto object-contain"
                 />
               </div>
               <p className="text-background/70 max-w-xs">
