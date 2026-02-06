@@ -1,22 +1,6 @@
-import { forwardRef, useEffect } from "react";
+import { forwardRef } from "react";
 
 const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
-  useEffect(() => {
-    const src = "https://link.msgsndr.com/js/form_embed.js";
-    // Force a fresh load so the embed initializes reliably.
-    const existing = document.querySelector<HTMLScriptElement>(`script[src="${src}"]`);
-    if (existing) existing.remove();
-
-    const script = document.createElement("script");
-    script.src = src;
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      // Keep the script if other embeds rely on it.
-    };
-  }, []);
-
   return (
     <section ref={ref} id="signup" className="section-dark py-24 scroll-mt-header">
       <div className="container mx-auto px-6">

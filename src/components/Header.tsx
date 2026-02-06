@@ -19,7 +19,7 @@ const Header = ({ onCtaClick }: HeaderProps) => {
         <div className="flex items-center gap-3">
           <Link
             to="/login"
-            className="btn-cta-outline text-base py-3 px-6 text-white border-white hover:bg-white hover:text-foreground"
+            className="btn-cta-outline text-base py-3 px-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
           >
             Member Login
           </Link>
