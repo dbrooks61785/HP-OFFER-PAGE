@@ -1,7 +1,8 @@
-import { forwardRef, useEffect, useMemo, useState } from "react";
+import { forwardRef, useEffect, useMemo, useRef, useState } from "react";
 
 const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
   const IFRAME_ID = "inline-rzO4aGPK4HLk2zyHkBoM";
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
   const getHeight = (w: number) => {
     // GHL forms often grow significantly on mobile due to stacked fields.
@@ -37,21 +38,34 @@ const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
       const origin = String(event.origin || "");
       if (!origin.includes("leadconnectorhq.com") && !origin.includes("msgsndr.com")) return;
 
+      // Only accept messages coming from our embed iframe (prevents false positives).
+      const cw = iframeRef.current?.contentWindow;
+      if (cw && event.source !== cw) return;
+
       let data: any = event.data;
       if (typeof data === "string") {
         try {
           data = JSON.parse(data);
         } catch {
-          // ignore non-JSON string messages
-          return;
+          // Some embeds send simple string payloads; attempt to extract a height number.
+          const m = data.match(/height[^0-9]*([0-9]{3,5})/i) ?? data.match(/([0-9]{3,5})/);
+          if (!m) return;
+          data = { height: Number(m[1]) };
         }
       }
-      if (!data || typeof data !== "object") return;
+      if (data == null) return;
 
-      const id = (data.iframeId ?? data.id ?? data.frameId ?? data.name) as unknown;
-      if (id && String(id) !== IFRAME_ID) return;
-
-      const rawHeight = data.height ?? data.frameHeight ?? data.iframeHeight ?? data.h;
+      // Be liberal in what we accept; LC/GHL payloads vary.
+      const rawHeight =
+        (typeof data === "number" ? data : null) ??
+        (typeof data === "object"
+          ? data.height ??
+            data.frameHeight ??
+            data.iframeHeight ??
+            data.h ??
+            data?.data?.height ??
+            data?.payload?.height
+          : null);
       const next = Number(rawHeight);
       if (!Number.isFinite(next)) return;
 
@@ -82,6 +96,7 @@ const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
             {/* Keep this close to the GHL-provided height to avoid blank space below */}
             <div style={{ width: "100%", height: heightPx }}>
               <iframe
+                ref={iframeRef}
                 src="https://api.leadconnectorhq.com/widget/form/rzO4aGPK4HLk2zyHkBoM"
                 style={{ width: "100%", height: "100%", border: "none" }}
                 id={IFRAME_ID}
