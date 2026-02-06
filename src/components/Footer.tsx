@@ -8,11 +8,13 @@ const Footer = () => {
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
             <div>
-              <img 
-                src={logo} 
-                alt="EZ Lumper Services" 
-                className="w-[150px] h-[100px] object-contain mb-4 invert brightness-0 invert"
-              />
+              <div className="inline-flex items-center justify-center rounded-xl bg-white p-3 mb-4">
+                <img
+                  src={logo}
+                  alt="EZ Lumper Services"
+                  className="h-14 w-auto object-contain"
+                />
+              </div>
               <p className="text-background/70 max-w-xs">
                 Emergency freight recovery services for carriers, brokers, and shippers nationwide.
               </p>

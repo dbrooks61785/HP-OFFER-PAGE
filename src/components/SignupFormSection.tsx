@@ -3,8 +3,9 @@ import { forwardRef, useEffect } from "react";
 const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
   useEffect(() => {
     const src = "https://link.msgsndr.com/js/form_embed.js";
+    // Force a fresh load so the embed initializes reliably.
     const existing = document.querySelector<HTMLScriptElement>(`script[src="${src}"]`);
-    if (existing) return;
+    if (existing) existing.remove();
 
     const script = document.createElement("script");
     script.src = src;
@@ -29,24 +30,26 @@ const SignupFormSection = forwardRef<HTMLElement>((_, ref) => {
           </div>
           
           <div className="card-dark overflow-hidden">
-            <iframe
-              src="https://api.leadconnectorhq.com/widget/form/rzO4aGPK4HLk2zyHkBoM"
-              style={{ width: "100%", height: "2342px", border: "none", borderRadius: "60px" }}
-              id="inline-rzO4aGPK4HLk2zyHkBoM"
-              data-layout="{'id':'INLINE'}"
-              data-trigger-type="alwaysShow"
-              data-trigger-value=""
-              data-activation-type="alwaysActivated"
-              data-activation-value=""
-              data-deactivation-type="neverDeactivate"
-              data-deactivation-value=""
-              data-form-name="H.A.U.L. PASS Signup Form"
-              data-height="2342"
-              data-layout-iframe-id="inline-rzO4aGPK4HLk2zyHkBoM"
-              data-form-id="rzO4aGPK4HLk2zyHkBoM"
-              title="H.A.U.L. PASS Signup Form"
-              loading="lazy"
-            />
+            <div style={{ width: "100%", height: "2342px" }}>
+              <iframe
+                src="https://api.leadconnectorhq.com/widget/form/rzO4aGPK4HLk2zyHkBoM"
+                style={{ width: "100%", height: "100%", border: "none", borderRadius: "60px" }}
+                id="inline-rzO4aGPK4HLk2zyHkBoM"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="H.A.U.L. PASS Signup Form"
+                data-height="2342"
+                data-layout-iframe-id="inline-rzO4aGPK4HLk2zyHkBoM"
+                data-form-id="rzO4aGPK4HLk2zyHkBoM"
+                title="H.A.U.L. PASS Signup Form"
+                loading="lazy"
+              />
+            </div>
           </div>
 
           <p className="text-center text-surface-dark-muted text-sm mt-6">
